@@ -1,22 +1,25 @@
   class Stack {
   constructor(){
     this.stack = [];
-    this.size = this.stack.length;
+    this.size = 0;
+    this.top = 0;
   }
   
   push(){
     this.stack[this.size] = this.size + 1;
+    this.top = this.stack[this.size];
     this.size += 1;
   }
   
   pop(){
-    const last = this.peek();
-    let i = 0,
-        aux = [];
-    
-    if(this.isEmpty()){
+    if (this.isEmpty()) {
       return 0;
     }
+    
+    const last = this.top;
+    
+    let i = 0,
+        aux = [];
     
     this.size -= 1;
     
@@ -26,11 +29,13 @@
     }
     
     this.stack = aux;
+    this.top = this.stack[this.size];
+    
     return last;
   }
   
   peek(){
-    return this.stack[this.size - 1];
+    return this.top;
   }
   
   isEmpty(){
@@ -45,12 +50,20 @@
     return this._stack;
   }
   
+  get top(){
+    return this._top;
+  }
+  
   set size(newSize){
     this._size = newSize;
   }
   
   set stack(newStack){
     this._stack = newStack;
+  }
+  
+  set top(newTop){
+    this._top = newTop;
   }
 }
 
@@ -64,9 +77,9 @@ class Queue {
   
   enqueue() {
     this.queue[this.size] = this.size + 1;
-    this.size += 1;
-    this.rear = this.queue[this.size - 1];
+    this.rear = this.queue[this.size];
     this.front = this.queue[0];
+    this.size += 1;
   }
   
   dequeue() {

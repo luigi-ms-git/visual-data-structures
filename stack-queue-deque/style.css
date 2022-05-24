@@ -8,6 +8,8 @@ li {
   padding: 5vw;
 }
 
-#stack { transform: rotate(180deg); }
+/*
+#queue { transform: rotate(180deg); }
 
-#stack > li { transform: rotate(-180deg); }
+#queue > li { transform: rotate(-180deg); }
+*/
