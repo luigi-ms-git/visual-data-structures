@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+body {
+  font-family: 'Open Sans', sans-serif; 
+  padding: 2vw;
+}
+
+a { 
+  text-decoration: none;
+  font-size: 1.3em;
+}
