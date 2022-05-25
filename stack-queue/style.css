@@ -29,6 +29,13 @@ button {
 
 #legend div span { margin-left: 2vw; }
 
+#stackWarn, #queueWarn {
+  visibility: hidden;
+  padding: 0.6vh;
+  background-color: green;
+  color: white;
+}
+
 .front, .top { border: 2px solid red; }
 
 .rear { border: 2px solid blue; }
