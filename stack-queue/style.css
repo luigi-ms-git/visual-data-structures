@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+* { font-family: 'Open Sans', sans-serif; }
+
+ul {
+  list-style: none;
+  display: flex;
+}
+
+li {
+  border: 1px solid black;
+  padding: 5vw;
+}
+
+button {
+  width: 15vw;
+  height: 4vh;
+}
+
+#legend, #legend > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#legend { width: 50vw; }
+
+#legend, body > div { margin-bottom: 5vh; }
+
+#legend div span { margin-left: 2vw; }
+
+.front, .top { border: 2px solid red; }
+
+.rear { border: 2px solid blue; }

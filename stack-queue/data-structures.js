@@ -12,10 +12,6 @@
   }
   
   pop(){
-    if (this.isEmpty()) {
-      return 0;
-    }
-    
     const last = this.top;
     
     let i = 0,
@@ -29,7 +25,7 @@
     }
     
     this.stack = aux;
-    this.top = this.stack[this.size];
+    this.top = this.stack[this.size - 1];
     
     return last;
   }
@@ -40,6 +36,10 @@
   
   isEmpty(){
     return this.size === 0;
+  }
+  
+  isFull(){
+    return this.size === 5;
   }
   
   get size(){
@@ -83,11 +83,6 @@ class Queue {
   }
   
   dequeue() {
-    if(this.isEmpty()){
-      console.error("Empty queue");
-      return 0;
-    }
-
     const dequeued = this.front;
     
     let i = 1,
@@ -112,6 +107,10 @@ class Queue {
   
   isEmpty() {
     return this.size === 0;
+  }
+  
+  isFull(){
+    return this.size === 5;
   }
   
   get size() {
@@ -147,109 +146,4 @@ class Queue {
   }
 }
 
-class Deque {
-  constructor() {
-    this.deque = [];
-    this.first = 0;
-    this.size = this.deque.length;
-  }
-  
-  addFront() {
-    if(this.isEmpty()){
-      this.addBack();
-    }else{
-      let i = this.size;
-      while(i > 0){
-        this.deque[i] = this.deque[i - 1];
-        i -= 1;
-      }
-      this.size += 1;
-      this.deque[0] = this.size;
-    }
-  }
-  
-  addBack(){
-    this.deque[this.size] = this.size + 1;
-    this.size += 1;
-  }
-  
-  removeFront() {
-    if(this.isEmpty()){
-      return 0;
-    }
-    
-    const removed = this.deque[this.first];
-    let i = 0,
-        aux = [];
-        
-    while(i < this.size - 1){
-      aux.push(this.deque[i]);
-      i += 1;
-    }
-    
-    this.deque = aux;
-    return removed;
-  }
-  
-  removeBack(){
-    if(this.isEmpty()){
-      return 0;
-    }
-    
-    const removed = this.deque[this.size - 1];
-    let i = 0,
-        aux = [];
-    
-    this.size -= 1;
-    
-    while(i < this.size){
-      aux.push(this.deque[i]);
-      i += 1;
-    }
-    
-    this.deque = aux;
-    return removed;
-  }
-  
-  peekFront() {
-    return this.deque[this.first];
-  }
-  
-  peekBack(){
-    return this.deque[this.size - 1];
-  }
-  
-  isEmpty() {
-    return this.size - this.first === 0;
-  }
-  
-  length() {
-    return this.size - this.first;
-  }
-  
-  get size() {
-    return this._size;
-  }
-  
-  get deque() {
-    return this._deque;
-  }
-  
-  get first() {
-    return this._first;
-  }
-  
-  set size(newSize) {
-    this._size = newSize;
-  }
-  
-  set deque(newDeque) {
-    this._deque = newDeque;
-  }
-  
-  set first(newFirst) {
-    this._first = newFirst;
-  }
-}
-
-export { Stack, Queue, Deque };
+export { Stack, Queue };
