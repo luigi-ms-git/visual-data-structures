@@ -17,6 +17,8 @@ button {
   height: 4vh;
 }
 
+input { height: 3vh; }
+
 #legend, #legend > div {
   display: flex;
   align-items: center;

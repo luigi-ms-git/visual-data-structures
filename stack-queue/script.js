@@ -7,8 +7,13 @@ const stackUl = document.getElementById("stack"),
       stackWarn = document.getElementById("stackWarn"),
       queueWarn = document.getElementById("queueWarn");
 
+const stackItem = document.getElementById("stackItem"),
+      queueItem = document.getElementById("queueItem");
+
 const pushStackBtn = document.getElementById("pushStack"),
       popStackBtn = document.getElementById("popStack"),
+      orderStackBtn = document.getElementById("orderStack"),
+      orderQueueBtn = document.getElementById("orderQueue"),
       enqueueBtn = document.getElementById("enqueue"),
       dequeueBtn = document.getElementById("dequeue");
 
@@ -55,13 +60,19 @@ function removeULChild(ds){
   }
 }
 
+function sortStructure(dsObject, ul){
+  ul.childNodes.forEach((li, index) => {
+    li.textContent = dsObject.array[index];
+  });
+}
+
 pushStackBtn.addEventListener("click", (e) => {
   if(stack.isFull()){
     console.warn("Overflow");
     stackWarn.style.visibility = "visible";
     stackWarn.textContent = "Overflow!"
   }else{
-    stack.push();
+    stack.push(stackItem.value);
     newULChild(stack.peek(), "stack");
     stackSize.textContent = stack.size;
     stackWarn.textContent = "";
@@ -84,13 +95,24 @@ popStackBtn.addEventListener("click", (e) => {
   }
 });
 
+orderStackBtn.addEventListener("click", e => {
+  if(stack.isEmpty()){
+    stackWarn.style.visibility = "visible";
+    stackWarn.textContent = "Empty Stack";
+  }else{
+    stackWarn.style.visibility = "hidden";
+    stack.order();
+    sortStructure(stack, stackUl);
+  }
+});
+
 enqueueBtn.addEventListener("click", (e) => {
   if(queue.isFull()){
     console.warn("Overflow");
     queueWarn.style.visibility = "visible";
     queueWarn.textContent = "Overflow!";
   }else{
-    queue.enqueue();
+    queue.enqueue(queueItem.value);
     newULChild(queue.peek(), "queue");
     queueSize.textContent = queue.size;
     queueWarn.style.visibility = "hidden";
@@ -108,5 +130,16 @@ dequeueBtn.addEventListener("click", (e) => {
     console.warn("Saiu da fila: " + dequeued);
     queueSize.textContent = queue.size;
     queueWarn.style.visibility = "hidden";
+  }
+});
+
+orderQueueBtn.addEventListener("click", e => {
+  if(queue.isEmpty()){
+    queueWarn.style.visibility = "visible";
+    queueWarn.textContent = "Empty Queue";
+  }else{
+    queueWarn.style.visibility = "hidden";
+    queue.order();
+    sortStructure(queue, queueUl);
   }
 });
