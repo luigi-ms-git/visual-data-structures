@@ -1,0 +1,31 @@
+ul {
+  list-style: none;
+  display: flex;
+  margin-left: -5vw;
+}
+
+li { border: 1px solid black; }
+
+.node {
+  display: flex;
+  flex-direction: column;
+}
+
+.node > span {
+  border-top: 1px solid black;
+  padding: 2.5vw;
+  font-size: 0.7em;
+}
+
+#listWarn {
+  visibility: hidden;
+  padding: 0.6vh;
+  background-color: green;
+  color: white;
+}
+
+#head, #end {
+  height: 4.25vh;
+  display: inherit;
+  align-items: center;
+}
