@@ -25,43 +25,83 @@ class LinkedList {
   constructor(){
     this.head = new Node("HEAD");
     this.last = new Node("NULL");
-    this.list = [this.head, this.last];
+    this.array = [this.head, this.last];
     this.counter = 2;
     this.last.next = null;
     this.head.next = 1;
   }
   
-  insert(){
-    let newNode = new Node(this.counter - 1);
+  insert(newItem){
+    let newNode = new Node(newItem);
     
     if(this.isEmpty()){
-      newNode.next = this.list.length;
+      newNode.next = this.counter;
       
-      this.list[this.head.next] = newNode;
-      this.list[newNode.next] = this.last;
+      this.array[this.head.next] = newNode;
+      this.array[newNode.next] = this.last;
     }else{
-      const lastButOneIndex = this.list.length - 1;
-      newNode.next = this.list.length;
+      const lastButOneIndex = this.counter - 1;
+      newNode.next = this.counter;
       
-      this.list[lastButOneIndex] = newNode;
-      this.list[newNode.next] = this.last;
+      this.array[lastButOneIndex] = newNode;
+      this.array[newNode.next] = this.last;
     }
     this.counter += 1;
   }
   
   remove(){
-    const lastButOneIndex = this.list.length - 2;
+    const lastButOneIndex = this.array.length - 2;
     let i = 0, aux = [];
     
-    while(i < this.list.length){
+    while(i < this.array.length){
       if(i !== lastButOneIndex){
-        aux.push(this.list[i]);
+        aux.push(this.array[i]);
       }
       i += 1;
     }
     
     this.counter -= 1;
-    this.list = aux;
+    this.array = aux;
+  }
+  
+  order() {
+    let sub = this.array.splice(1, this.array.length - 2);
+    let last = this.array.pop();
+    
+    this.quickSort(sub, 0, sub.length - 1);
+    
+    this.array.push(sub);
+    this.array.push(last);
+    this.array = this.array.flat();
+  }
+  
+  quickSort(arr, start, end) {
+    if (start < end) {
+      let partIndex = this.partition(arr, start, end);
+      this.quickSort(arr, start, (partIndex - 1));
+      this.quickSort(arr, (partIndex + 1), end);
+    }
+  }
+  
+  partition(arr, start, end) {
+    let pivot = arr[end].data,
+      i = (start - 1),
+      j = start;
+  
+    while (j <= (end - 1)) {
+      if (arr[j].data < pivot) {
+        i += 1;
+            [arr[i].data, arr[j].data] = [arr[j].data, arr[i].data];
+      }
+      j += 1;
+    }
+  
+        [arr[i + 1].data, arr[end].data] = [arr[end].data, arr[i + 1].data];
+    return (i + 1);
+  }
+  
+  peekLast(){
+    return this.array[this.size()];
   }
   
   size(){
@@ -76,8 +116,8 @@ class LinkedList {
     return this.size() === 5;
   }
   
-  get list(){
-    return this._list;
+  get array(){
+    return this._array;
   }
   
   get head(){
@@ -92,8 +132,8 @@ class LinkedList {
     return this._counter;
   }
   
-  set list(newList){
-    this._list = newList;
+  set array(newArray){
+    this._array = newArray;
   }
   
   set head(newHead){

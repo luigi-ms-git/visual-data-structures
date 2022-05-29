@@ -17,6 +17,11 @@ li { border: 1px solid black; }
   font-size: 0.7em;
 }
 
+.link {
+  border: inherit;
+  width: 17vw;
+}
+
 #listWarn {
   visibility: hidden;
   padding: 0.6vh;
@@ -28,4 +33,5 @@ li { border: 1px solid black; }
   height: 4.25vh;
   display: inherit;
   align-items: center;
+  margin-bottom: 5vh;
 }
